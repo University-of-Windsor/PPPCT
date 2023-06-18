@@ -26,7 +26,7 @@ This command does clustering with the collaboration of the remote worker(s). It 
 
 ## How to increase workers
 
-
+  
 
 Copyright © 2023, Ali Abbasi Tadi
 https://www.researchgate.net/profile/Ali-Abbasi-Tadi
