@@ -63,7 +63,11 @@ If you are going to change the dataset, some changes to the codes should be appl
 N_ROWS_PER_WORKER is equal to the number of cells. N_CLUSTERS is equal to the number of clusters. N_COLS is equal to the number of clusters plus 1.
 
 ## How to increase workers
+To increase the number of workers, you should copy/paste the folder ``` EnclaveResponder and AppResponder``` for whatever number of workers you need then update the number of workers in AppInitiator/App.cpp. 
 
+``` 
+num_workers = 1
+``` 
   
 
 Copyright © 2023, Ali Abbasi Tadi
