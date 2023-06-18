@@ -24,7 +24,7 @@ clone https://github.com/University-of-Windsor/PPPCT.git && cd PPPCT
    make SGX_MODE=SIM 
 ```
 
-    if you want to use debug mode or the hardware mode of the SGX substitute SIM to DEB <br/>
+if you want to use debug mode or the hardware mode of the SGX substitute SIM to DEB <br/>
 
 5. Once the project is built successfully, go to the folder "bin" in the root folder of the project. 
 6. Run the following command in the EnclaveResponder(equal to worker in the paper)<br/>
