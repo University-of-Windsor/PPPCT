@@ -21,7 +21,7 @@ For running this project you have to follow the following steps:
     ./appinitiator ../dataset/comb_M.csv 3 3000 3000 <br/>
 This command does clustering with the collaboration of the remote worker(s). It adopts the middle size dataset as the input, you can change it to other datasets. The general overview of this command is: <br/>
 ./appinitiator "dataset" "number of clusters" "number of cells" "number of genes" <br/>
-
+ 
 ## Datasets
 
 ## How to increase workers
