@@ -52,7 +52,7 @@ Because there are 3000 cells and 3000 genes in M-Set and we already know that th
 ./appinitiator dataset/comb_M.csv 3 3000 3000 
 ```
 
-## Datasets
+## Datasets Change
 The dataset should be a Unique Molecular Identifier (UMI) count dataset in tabular format (non-sparse). Some of the examples of these datasets are already provided in dataset folder in the root folder of this work. <br/>
 If you are going to change the dataset, some changes to the codes should be applied before doing the makefile. In this work, we do not care about the number of dimensions (which are considered as the number of features in our work). You only need to update the number of cells (sample records) in both worker and server side. For this reason you should update the folowing constant values if all datatypes.h files thoughout the project. 
 <br>
@@ -63,13 +63,28 @@ If you are going to change the dataset, some changes to the codes should be appl
 ```N_ROWS_PER_WORKER``` is equal to the number of cells that each worker needs to hanle (e.g. if there are 3000 cells and 3 clusters, then ```N_ROWS_PER_WORKER ``` should be 1000). ```N_CLUSTERS``` is equal to the number of clusters. ```N_COLS``` is equal to the number of clusters plus 1.
 
 ## How to increase workers
-To increase the number of workers, you should follow multiple steps:
-1- copy and paste the folder ```EnclaveResponder and AppResponder``` for whatever number of workers you need then update the number of workers in ``` AppInitiator/App.cpp``` to whatever is preferred for you. 
+To increase the number of workers, you should follow multiple steps: <br/>
+1- copy and paste the folder ```EnclaveResponder and AppResponder``` for whatever number of workers you need. For example
 
 ``` 
-num_workers = 1
+cp EnclaveResponder EnclaveResponder2
+cp AppResponder AppResponder2
 ``` 
-2- 
+
+2- Update the number of workers in ``` AppInitiator/App.cpp``` to whatever is preferred for you. For example
+
+``` 
+uint32_t num_workers = 2;
+``` 
+3- Update the bash script file to compile what is included in the cloned files. Open makefile in the root folder of the project and add whatever files you just cloned. For example: <br/>
+```
+SUB_DIR := AppInitiator AppResponder EnclaveInitiator EnclaveResponder App AppResponder2 EnclaveResponder2 
+```
+Finally, compile files using makefile in the root folder. Compile by following command:
+```
+   make SGX_MODE=SIM 
+```
+If you feel the extension of the real-world PPPCT is a bit confusing using socket programming. We have prepared a simulated version of this work where all of the workers are inside one envclave. In the simulated version each thread is considered as a worker and using MPI programming the coordination between threads happen. You can reach to the simulated version inside the ```SimulatedVersion``` folder. Please follow readme.md in that folder for compiling the simulation version. 
 
 Copyright © 2023, Ali Abbasi Tadi
 https://www.researchgate.net/profile/Ali-Abbasi-Tadi
