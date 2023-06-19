@@ -126,8 +126,6 @@ uint32_t rows2 = 6000;
 uint32_t cols2 = 4;
 cols_global = 4;
 uint32_t num_clusters = 3;
-//start_time = clock();
-
 
     // create ECDH initiator enclave
     status = sgx_create_enclave(ENCLAVE_INITIATOR_NAME, SGX_DEBUG_FLAG, &token, &update, &initiator_enclave_id, NULL);
