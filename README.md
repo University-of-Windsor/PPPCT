@@ -56,19 +56,20 @@ Because there are 3000 cells and 3000 genes in M-Set and we already know that th
 The dataset should be a Unique Molecular Identifier (UMI) count dataset in tabular format (non-sparse). Some of the examples of these datasets are already provided in dataset folder in the root folder of this work. <br/>
 If you are going to change the dataset, some changes to the codes should be applied before doing the makefile. In this work, we do not care about the number of dimensions (which are considered as the number of features in our work). You only need to update the number of cells (sample records) in both worker and server side. For this reason you should update the folowing constant values if all datatypes.h files thoughout the project. 
 <br>
-1- #define N_ROWS_PER_WORKER  3000   <br/>
-2- #define N_CLUSTERS         3      <br/>
-3- #define N_COLS             4      <br/>
+1- ```#define N_ROWS_PER_WORKER  3000```   <br/>
+2- ```#define N_CLUSTERS         3```      <br/>
+3- ```#define N_COLS             4```      <br/>
 
-N_ROWS_PER_WORKER is equal to the number of cells. N_CLUSTERS is equal to the number of clusters. N_COLS is equal to the number of clusters plus 1.
+```N_ROWS_PER_WORKER``` is equal to the number of cells that each worker needs to hanle (e.g. if there are 3000 cells and 3 clusters, then ```N_ROWS_PER_WORKER ``` should be 1000). ```N_CLUSTERS``` is equal to the number of clusters. ```N_COLS``` is equal to the number of clusters plus 1.
 
 ## How to increase workers
-To increase the number of workers, you should copy/paste the folder ``` EnclaveResponder and AppResponder``` for whatever number of workers you need then update the number of workers in AppInitiator/App.cpp. 
+To increase the number of workers, you should follow multiple steps:
+1- copy and paste the folder ```EnclaveResponder and AppResponder``` for whatever number of workers you need then update the number of workers in ``` AppInitiator/App.cpp``` to whatever is preferred for you. 
 
 ``` 
 num_workers = 1
 ``` 
-  
+2- 
 
 Copyright © 2023, Ali Abbasi Tadi
 https://www.researchgate.net/profile/Ali-Abbasi-Tadi
