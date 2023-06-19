@@ -84,7 +84,7 @@ Finally, compile files using makefile in the root folder. Compile by following c
 ```
    make SGX_MODE=SIM 
 ```
-
+If you feel the extension of the real-world PPPCT is a bit confusing using socket programming. We have prepared a simulated version of this work where all of the workers are inside one envclave. In the simulated version each thread is considered as a worker and using MPI programming the coordination between threads happen. You can reach to the simulated version inside the ```SimulatedVersion``` folder. Please follow readme.md in that folder for compiling the simulation version. 
 
 Copyright © 2023, Ali Abbasi Tadi
 https://www.researchgate.net/profile/Ali-Abbasi-Tadi
