@@ -1,0 +1,30 @@
+/* Enclave.edl - Top EDL file. */
+
+enclave {
+	from "Sealing/Sealing.edl" import *;
+    trusted {
+        public void scanf_override([out] char output[100]);
+        public void find_delta(int Number_of_clusters,int Number_of_cols,int iter_counter,[user_check]double ***iterate_centroids_global,[in,out]double * delta);
+        public void find_centroids(int Number_of_clusters,int Number_of_cols,int iter_counter, [user_check] int * points_inside_cluster_count,[user_check] float ** cluster_points_sum, [user_check] int **iter_cluster_count_global,[user_check]double ***iterate_centroids_global);
+        public void find_distance(int start,int end,int Number_of_clusters,int number_of_cols,int Number_of_rows,int iter_counter, [user_check] int* myarray, [user_check] int * points_inside_cluster_count,[user_check] float ** cluster_points_sum,[user_check] double ***iterate_centroids_global);
+        public void sealed_centroids_out([user_check]char *filename,int K,int number_of_iterations, [user_check] double*** iter_centroids);
+        public void sealed_clusters_out([user_check]char *filename,int N, [in]int* cluster_points);
+        public void get_init_centroids(int Number_of_clusters, int number_of_cols, int max_iter, [in,out] double ***iterate_centroids);
+
+    };
+
+    /* 
+     * ocall_print_string - invokes OCALL to display string buffer inside the enclave.
+     *  [in]: copy the string buffer to App outside.
+     *  [string]: specifies 'str' is a NULL terminated buffer.
+     */
+    untrusted {
+        void ocall_scan_input([out] char output[100]);
+        void ocall_print_string([in, string] const char *str);
+	int ocall_save_dataset([in, size=sealed_size]const uint8_t* sealed_data, size_t sealed_size);
+        int ocall_load_dataset([out, size=sealed_size]uint8_t* sealed_data,size_t sealed_size);      
+        int ocall_save_data([user_check]char * filename,[in, size=sealed_size]const uint8_t* sealed_data, size_t sealed_size);
+          
+    };
+
+};
