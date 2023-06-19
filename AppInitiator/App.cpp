@@ -125,8 +125,6 @@ worker_input_t worker_input;
 uint32_t rows2 = 6000;
 uint32_t cols2 = 4;
 cols_global = 4;
-//rows_global = 450;
-//K=3;
 uint32_t num_clusters = 3;
 //start_time = clock();
 
@@ -248,9 +246,7 @@ for(int i=0;i < worker_output[0].n_rows;i++)
 
     sgx_destroy_enclave(initiator_enclave_id);
 
-    //end_time = clock();
 gettimeofday(&end_time, NULL);
-    //computation_time =  ((double) (end_time - start_time)) / CLOCKS_PER_SEC;
     cpu_time_used = ((double) (end_time.tv_sec - start_time.tv_sec)) +
                     ((double) (end_time.tv_usec - start_time.tv_usec)) / 1000000.0;
 
@@ -368,16 +364,16 @@ float ** initialize_centroids(float ** dataset, uint32_t n_rows, uint32_t n_cols
     {
         new_centroids[i] = (float *) calloc(n_cols,sizeof(float));
         
-/*         int random_value = rand() % n_rows;
-       printf("random value: %d",random_value);
+        int random_value = rand() % n_rows;
+        printf("random value: %d",random_value);
          for (int j = 0; j < n_cols; j++) {
-            new_centroids[i][j] = dataset[random_value][j];//random_value;//(i + 1) * mean_values[j]/rows;
-        } */
+            new_centroids[i][j] = dataset[random_value][j];
+        } 
     }
-    /*debug*/
+    /*debug
     memcpy(new_centroids[0],dataset[0],n_cols*sizeof(float));
     memcpy(new_centroids[1],dataset[2],n_cols*sizeof(float));
-    memcpy(new_centroids[2],dataset[28],n_cols*sizeof(float));
+    memcpy(new_centroids[2],dataset[28],n_cols*sizeof(float));*/
     return new_centroids;
 }
 void dispose_matrix(float ** matrix,uint32_t n_rows){
