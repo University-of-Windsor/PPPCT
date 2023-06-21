@@ -64,7 +64,7 @@ To run the no security version go the ```Nosecurity``` folder and follow the doc
 You can use all the datasets in PPPCT root folder.
 Once the application gives you the labels, you should run ARI computation using labels and the correct labels for that specific dataset in PPPCT's datset folder to compute ARI. you can use the following codes in python using scikit-learn library. Copy and paste the predicted labels in the output screen into a .txt file named ```predicted_labels.txt```, also copy and paste the true labels inside a .txt file named ```true_labels.txt``` then run the following codes in python.
 
-```
+```python
 from sklearn import metrics
 
 # Read true labels from file
