@@ -108,6 +108,8 @@ ari = metrics.adjusted_rand_score(true_labels, predicted_labels)
 print("Adjusted Rand Index (ARI):", ari)
 ```
 
+In the next version of PPPCT we will internalize these codes into our work, so you do not need to do extra codings to get results of ARI <br/>
+
 ## This Work is under review by the journal of Bioinformatics. 
 
 Copyright © 2023, Ali Abbasi Tadi <br/>
