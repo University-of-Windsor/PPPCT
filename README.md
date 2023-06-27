@@ -3,7 +3,6 @@ Privacy Preserving for Parallel Clustering Transcriptomic data (PPPCT) is the fi
 This project works with datasets of UMI count obtained from gene expression profiles. Some of these kinds of these datasets are provided in the dataset folder of this project. However you can come up with new datasets by runing data_preparation.m in Matlab. 
 
 ## How to run:
-
 For running this project you have to follow the following steps:
 1. Install Intel SGX through the [documentation](https://github.com/intel/linux-sgx) <br/>
 2. Install python 3.9 and scikit learn package through <br/>
@@ -107,7 +106,6 @@ ari = metrics.adjusted_rand_score(true_labels, predicted_labels)
 # Print ARI
 print("Adjusted Rand Index (ARI):", ari)
 ```
-
 In the next version of PPPCT we will internalize these codes into our work, so you do not need to do extra codings to get results of ARI <br/>
 
 ## This Work is under review by the journal of Bioinformatics. 
