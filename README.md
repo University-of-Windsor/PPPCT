@@ -36,7 +36,7 @@ This command makes the worker listen on Port 8888, or whatever you prefer. The I
 7. Go to the trusted entity server (in remote/local computer) and run the following command <br/>
 
 ```
-    ./appinitiator ../dataset/comb_M.csv 3 3000 3000 
+    ./appinitiator ../dataset/comb_S.csv 3 1200 1000 
 ```
 
 This command does clustering with the collaboration of the remote worker(s). It is defaulted to the middle size dataset as the input (M-Set), you can change it to other datasets. The general overview of this command is: <br/>
@@ -45,21 +45,21 @@ This command does clustering with the collaboration of the remote worker(s). It 
 ./appinitiator "dataset" "number of clusters" "number of cells" "number of genes" 
 ```
 
-Because there are 3000 cells and 3000 genes in M-Set and we already know that there are 3 clusters in this dataset. The input command will be changed to the following:
+Because there are 1200 cells and 1000 genes in M-Set and we already know that there are 3 clusters in this dataset. The input command will be changed to the following:
 
 ```
-./appinitiator dataset/comb_M.csv 3 3000 3000 
+./appinitiator dataset/comb_S.csv 3 1200 1000 
 ```
 
 ## Datasets Change
 The dataset should be a Unique Molecular Identifier (UMI) count dataset in tabular format (non-sparse). Some of the examples of these datasets are already provided in dataset folder in the root folder of this work. <br/>
 If you are going to change the dataset, some changes to the codes should be applied before doing the makefile. In this work, we do not care about the number of dimensions (which are considered as the number of features in our work). You only need to update the number of cells (sample records) in both worker and server side. For this reason you should update the folowing constant values if all datatypes.h files thoughout the project. 
 <br>
-1- ```#define N_ROWS_PER_WORKER  3000```   <br/>
+1- ```#define N_ROWS_PER_WORKER  1200```   <br/>
 2- ```#define N_CLUSTERS         3```      <br/>
 3- ```#define N_COLS             4```      <br/>
 
-```N_ROWS_PER_WORKER``` is equal to the number of cells that each worker needs to hanle (e.g. if there are 3000 cells and 3 clusters, then ```N_ROWS_PER_WORKER ``` should be 1000). ```N_CLUSTERS``` is equal to the number of clusters. ```N_COLS``` is equal to the number of clusters plus 1.
+```N_ROWS_PER_WORKER``` is equal to the number of cells that each worker needs to hanle (e.g. if there are 1200 cells and 3 clusters, then ```N_ROWS_PER_WORKER ``` should be 1200). ```N_CLUSTERS``` is equal to the number of clusters. ```N_COLS``` is equal to the number of clusters plus 1.
 
 ## How to increase workers
 To increase the number of workers, you should follow multiple steps: <br/>
@@ -112,7 +112,10 @@ In the next version of PPPCT we will internalize these codes into our work, so y
 In counterparts folder, you will find the comparing methods in the paper. These methods are mostly implemented in R, where you should install R studio to run them easily. One of our counter parts is ParaDPMM, which is a linux based method, likewise PPPCT, and you can read its documentation to run through [ParaDPMM](https://github.com/tiehangd/Para_DPMM)
 
 
-## PPPCT is under review by the journal of Bioinformatics. 
+## In order to reproduce the work, feel free to contact me at Abbasit@uwindsor.ca
+
+
+## PPPCT is under review by the journal of Computers and security. 
 
 Copyright © 2023, Ali Abbasi Tadi <br/>
 https://www.researchgate.net/profile/Ali-Abbasi-Tadi <br/>
