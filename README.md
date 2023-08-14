@@ -39,13 +39,13 @@ This command makes the worker listen on Port 8888, or whatever you prefer. The I
     ./appinitiator ../dataset/comb_S.csv 3 1200 1000 
 ```
 
-This command does clustering with the collaboration of the remote worker(s). It is defaulted to the middle size dataset as the input (M-Set), you can change it to other datasets. The general overview of this command is: <br/>
+This command does clustering with the collaboration of the remote worker(s). It is defaulted to the small size dataset as the input (S-Set), you can change it to other datasets. The general overview of this command is: <br/>
 
 ```
 ./appinitiator "dataset" "number of clusters" "number of cells" "number of genes" 
 ```
 
-Because there are 1200 cells and 1000 genes in M-Set and we already know that there are 3 clusters in this dataset. The input command will be changed to the following:
+Because there are 1200 cells and 1000 genes in S-Set and we already know that there are 3 clusters in this dataset. The input command will be changed to the following:
 
 ```
 ./appinitiator dataset/comb_S.csv 3 1200 1000 
