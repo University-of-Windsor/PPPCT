@@ -112,7 +112,7 @@ In the next version of PPPCT we will internalize these codes into our work, so y
 In counterparts folder, you will find the comparing methods in the paper. These methods are mostly implemented in R, where you should install R studio to run them easily. One of our counter parts is ParaDPMM, which is a linux based method, likewise PPPCT, and you can read its documentation to run through [ParaDPMM](https://github.com/tiehangd/Para_DPMM)
 
 
-## PPPCT is under review by the journal of Bioinformatics. 
+## PPPCT is under review by the journal of Computers and security. 
 
 Copyright © 2023, Ali Abbasi Tadi <br/>
 https://www.researchgate.net/profile/Ali-Abbasi-Tadi <br/>
