@@ -115,7 +115,6 @@ In counterparts folder, you will find the comparing methods in the paper. These 
 ## In order to reproduce the work, feel free to contact me at Abbasit@uwindsor.ca
 
 
-## PPPCT is under review by the journal of Computers and security. 
 
 Copyright © 2023, Ali Abbasi Tadi <br/>
 https://www.researchgate.net/profile/Ali-Abbasi-Tadi <br/>
