@@ -9,7 +9,7 @@
 
 
 #define N_ROWS             10
-#define N_COLS             4
+#define N_COLS             1000
 #define N_CLUSTERS         3
 #define N_ROWS_PER_WORKER  1200    
 

@@ -16,6 +16,7 @@ using namespace std;
 #include <assert.h>
 #include <fstream>
 #include <getopt.h>
+#include "readlabels.cpp"
 
 #define MAX_PATH FILENAME_MAX
 #define MAX_ITER 3000
@@ -45,23 +46,26 @@ void find_centroids(int Number_of_clusters,int Number_of_cols,int iter_counter, 
 void find_delta(int Number_of_clusters,int Number_of_cols,int iter_counter,double ***iterate_centroids_global,double *delta);
 
 /* Application entry */
+int max_iter=3000;
+double thresh = 0; 
+/* Application entry */
 int main(int argc, char* argv[])
 {
     (void)(argc);
     (void)(argv);
 
-
+	
      int rows = 1000;
      int cols = 1200;
      rows_global=cols;
      cols_global=rows;			// Number of data points (input)
-    int K = 1;                          //Number of clusters to be formed (input)
+    int K = 1;                         //Number of clusters to be formed (input)
     int num_threads=4;
     char input[5];
     int* data_points = &rows;		//Data points (input)
     int* cluster_points = &rows;	//clustered data points (to be computed)
     double*** iter_centroids;              //centroids of each iteration (to be computed)
-    int number_of_iterations = 300;      //no of iterations performed by algo (to be computed)
+    int number_of_iterations = 3000;      //no of iterations performed by algo (to be computed)
     //---------------------------------------------------------------------
     int x = 1;
     double start_time = 0, end_time = 0;
@@ -73,7 +77,10 @@ int main(int argc, char* argv[])
     char * numberOfClusters=new char [2];
     char * numberOfCells=new char [10];
     char * numberOfGenes=new char [10];
-
+char * labels_file=new char [10];
+char * dr=new char [10];
+char * components=new char [10];
+char * max_iter_char=new char [10];
     if(argv[1]!=""){
     	dataset=argv[1];
     }
@@ -86,11 +93,28 @@ int main(int argc, char* argv[])
     if(argv[4]!=""){
     	numberOfGenes=argv[4];
     }
+    if(argv[5]!=""){
+    	labels_file=argv[5];
+    }
+    if(argv[6]!=""){
+    	dr=argv[6];
+    }else{ dr = "nmf";}
+    if(argv[7]!=""){
+    	components=argv[7];
+    }
+    if(argv[8]!=""){
+    	max_iter_char=argv[8];
+    }
+    if(argv[9]!=""){
+    	thresh = std::stod(argv[9]);
+    }
+    max_iter = atoi(max_iter_char);
 
 
     /*
   * start pre-processing with NMF
   */
+  delta_global = thresh + 1;
     K = atoi(numberOfClusters);
     rows_global=atoi(numberOfCells);
     cols_global = atoi(numberOfGenes);
@@ -102,11 +126,13 @@ int main(int argc, char* argv[])
     std::string python_command {"python3.10 preprocessing.py "};
     python_command+=dataset;
     python_command+=" ";
-    python_command+=numberOfClusters;
+    python_command+=components;
+    python_command+=" ";
+    python_command+=dr;
     system(const_cast<char*>(python_command.c_str()));
 
     cout << "python_command: " << python_command;
-    data_points2=processFile.readCsvFile("W.csv",rows_global,K+1);
+    data_points2=processFile.readCsvFile("W.csv",rows_global,atoi(components));//,K+1);
 
     end_time = omp_get_wtime();
     double read_time=end_time-start_time;
@@ -119,6 +145,7 @@ int main(int argc, char* argv[])
 
 
     cols_global=K+1;
+    cols_global = atoi(components);
     kmeans_omp(num_threads, rows_global,cols_global, K, cluster_points, iter_centroids, number_of_iterations,data_points2);
     end_time = omp_get_wtime();
 
@@ -130,9 +157,33 @@ int main(int argc, char* argv[])
 
     computation_time = end_time - start_time;
     char time[100]="computation time";
+    string trueLabelsFile = "xxx";
+    
+    //strcpy(trueLabelsFile, labels_file);
+trueLabelsFile = labels_file;
+    string predictedLabelsFile = "unsealed_labels.txt.txt";
 
+    // Read labels from CSV files
+    cout << "Predicted Label File: " << predictedLabelsFile << endl;
+    cout << "True label file " << trueLabelsFile << endl;
+    
+    vector<int> trueLabels = readLabelsFromCSV(trueLabelsFile);
+    vector<int> predictedLabels = readLabelsFromCSV(predictedLabelsFile);
+    
+
+     adjustRanges(predictedLabels,trueLabels);
 
     processFile.computation_time_out(time,computation_time);
+
+    double AR, RI, MI, HI;
+    double randIndex = RandIndex(trueLabels, predictedLabels, AR, RI, MI, HI);
+
+    // Display results
+    cout << "Adjusted Rand Index: " << AR << endl;
+    cout << "Rand Index: " << RI << endl;
+    cout << "Mirkin's Index: " << MI << endl;
+    cout << "Hubert's Index: " << HI << endl;
+    processFile.computation_time_out(time, computation_time);
 
     cout << "\nTime Taken: " << computation_time<< "\n";
 cout << "\nTime Pre-processing : " << read_time  << "\n";
