@@ -108,7 +108,7 @@ int main(int argc, char* argv[])
     system(const_cast<char*>(python_command.c_str()));
 
     std::cout << "python_command: " << python_command;
-    data_points2=processFile.readCsvFile("W.csv",rows_global,K+1);
+    data_points2=processFile.readCsvFile("W.csv",rows_global,zK+1);
 
     //end_time = omp_get_wtime();
     //double read_time=end_time-start_time;
