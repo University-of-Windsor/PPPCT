@@ -95,12 +95,12 @@ In counterparts folder, you will find the comparing methods in the paper. These 
 
 
 ## Reference
-If you are using this work, Please cite the following article <br/>
-@article{tadi2024pppct,
-  title={PPPCT: Privacy-Preserving framework for Parallel Clustering Transcriptomics data},
-  author={Tadi, Ali Abbasi and Alhadidi, Dima and Rueda, Luis},
-  journal={Computers in Biology and Medicine},
-  pages={108351},
-  year={2024},
-  publisher={Elsevier}
+If you are using this work, Please cite the following paper <br/>
+@article{tadi2024pppct,<br/>
+  title={PPPCT: Privacy-Preserving framework for Parallel Clustering Transcriptomics data},<br/>
+  author={Tadi, Ali Abbasi and Alhadidi, Dima and Rueda, Luis},<br/>
+  journal={Computers in Biology and Medicine},<br/>
+  pages={108351},<br/>
+  year={2024},<br/>
+  publisher={Elsevier}<br/>
 }
