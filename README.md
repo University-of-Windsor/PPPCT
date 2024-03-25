@@ -85,28 +85,7 @@ Finally, compile files using makefile in the root folder. Compile by following c
 ```
 If you feel the extension of the real-world PPPCT is a bit confusing using socket programming. We have prepared a simulated version of this work where all of the workers are inside one envclave. In the simulated version each thread is considered as a worker and using MPI programming the coordination between threads happen. You can reach to the simulated version inside the ```SimulatedVersion``` folder. Please follow readme.md in that folder for compiling the simulation version. 
 
-## How to compute Adjusted Rand Index (ARI)
-You can use all the datasets in PPPCT root folder.
-Once the application gives you the labels, you should run ARI computation using labels and the correct labels for that specific dataset in PPPCT's datset folder to compute ARI. you can use the following codes in python using scikit-learn library. Copy and paste the predicted labels in the output screen into a .txt file named ```predicted_labels.txt```, also copy and paste the true labels inside a .txt file named ```true_labels.txt``` then run the following codes in python.
 
-```python
-from sklearn import metrics
-
-# Read true labels from file
-with open("true_labels.txt", "r") as file:
-    true_labels = [int(label.strip()) for label in file.readlines()]
-
-# Read predicted labels from file
-with open("predicted_labels.txt", "r") as file:
-    predicted_labels = [int(label.strip()) for label in file.readlines()]
-
-# Compute ARI
-ari = metrics.adjusted_rand_score(true_labels, predicted_labels)
-
-# Print ARI
-print("Adjusted Rand Index (ARI):", ari)
-```
-In the next version of PPPCT we will internalize these codes into our work, so you do not need to do extra codings to get results of ARI <br/>
 
 ## Comparison
 In counterparts folder, you will find the comparing methods in the paper. These methods are mostly implemented in R, where you should install R studio to run them easily. One of our counter parts is ParaDPMM, which is a linux based method, likewise PPPCT, and you can read its documentation to run through [ParaDPMM](https://github.com/tiehangd/Para_DPMM)
@@ -115,8 +94,13 @@ In counterparts folder, you will find the comparing methods in the paper. These 
 ## In order to reproduce the work, feel free to contact me at Abbasit@uwindsor.ca
 
 
-
-Copyright © 2023, Ali Abbasi Tadi <br/>
-https://www.researchgate.net/profile/Ali-Abbasi-Tadi <br/>
-All rights reserved.
-
+## Reference
+If you are using this work, Please cite the following article <br/>
+@article{tadi2024pppct,
+  title={PPPCT: Privacy-Preserving framework for Parallel Clustering Transcriptomics data},
+  author={Tadi, Ali Abbasi and Alhadidi, Dima and Rueda, Luis},
+  journal={Computers in Biology and Medicine},
+  pages={108351},
+  year={2024},
+  publisher={Elsevier}
+}
